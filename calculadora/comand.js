@@ -15,7 +15,7 @@ var two = document.getElementById('Two');
 var three = document.getElementById('Three');
 var subtract = document.getElementById('Subtract');
 var equals = document.getElementById('Equals');
-var decimal = document.getElementById('Decimal');
+var decimal = document.getElementById('Decimal'); 
 var zero = document.getElementById('Zero');
 var add = document.getElementById('Add');
 var visorCampo = document.getElementById('Visor');
@@ -38,6 +38,23 @@ function limparElemento() {
         visorCampo.value += element;
     });   
 } 
+
+function calcular() {
+    let tabela = [];
+    for (var i = 0; i < pilha.length; i++) {
+        tabela[i] = pilha[i];
+    }
+    let equacao = tabela.join('');
+    try {
+        let resposta = eval(equacao);
+        visorCampo.value = resposta;
+        pilha = [resposta]; // Atualiza pilha com o resultado
+    } catch (e) {
+        alert("Expressão inválida!");
+        limparVisorCompleto();
+    }
+}
+
 
 openParenthesis.addEventListener('click', () => {
     adicionarAoVisor('(');    
@@ -98,8 +115,7 @@ subtract.addEventListener('click',() => {
     pilha.push(' - ');
 });
 equals.addEventListener('click',() => {
-    adicionarAoVisor(' = ');
-    pilha.push(' = ');
+    calcular();
 });
 decimal.addEventListener('click',() => {
     adicionarAoVisor(',');
@@ -115,5 +131,11 @@ add.addEventListener('click',() => {
 });
 
 clearAll.addEventListener('click', () => limparVisorCompleto());
-
 clear.addEventListener('click', () => limparElemento()); //posso criar um pilha para limpar o visor
+
+
+//o sistema ja consegue fazer todos os calculos que eu vou precisar
+//de forma que so preciso manipular os dados e o sistema faz a conta.
+
+
+
