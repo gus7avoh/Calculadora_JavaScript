@@ -40,21 +40,21 @@ function limparElemento() {
 } 
 
 function calcular() {
-    let tabela = [];
-    for (var i = 0; i < pilha.length; i++) {
-        tabela[i] = pilha[i];
-    }
-    let equacao = tabela.join('');
-    try {
-        let resposta = eval(equacao);
-        visorCampo.value = resposta;
-        pilha = [resposta]; // Atualiza pilha com o resultado
-    } catch (e) {
-        alert("Expressão inválida!");
-        limparVisorCompleto();
+    let equacao = pilha.join('');
+    let hasLetra = /[a-zA-Z]/.test(equacao);
+    if (hasLetra) {
+        alert("Hoje Não");
+    } else {
+        try {
+            let resposta = eval(equacao);
+            visorCampo.value = resposta;
+            pilha = [resposta];
+        } catch (e) {
+            alert("Expressão inválida!");
+            limparVisorCompleto();
+        }
     }
 }
-
 
 openParenthesis.addEventListener('click', () => {
     adicionarAoVisor('(');    
@@ -118,8 +118,8 @@ equals.addEventListener('click',() => {
     calcular();
 });
 decimal.addEventListener('click',() => {
-    adicionarAoVisor(',');
-    pilha.push(',');
+    adicionarAoVisor('.');
+    pilha.push('.');
 });
 zero.addEventListener('click',() => {
     adicionarAoVisor('0');
@@ -132,10 +132,3 @@ add.addEventListener('click',() => {
 
 clearAll.addEventListener('click', () => limparVisorCompleto());
 clear.addEventListener('click', () => limparElemento()); //posso criar um pilha para limpar o visor
-
-
-//o sistema ja consegue fazer todos os calculos que eu vou precisar
-//de forma que so preciso manipular os dados e o sistema faz a conta.
-
-
-

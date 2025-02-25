@@ -23,9 +23,9 @@ main{
     border-radius: 10px;
     background-color: transparent;
     font-size: 1.5em;
-    font-weight: bolder;
-    
+    font-weight: bolder; 
 }
+
 #Visor:focus {
     outline: none;
     border: 0;
